@@ -54,6 +54,7 @@ import {
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const FreelancerWebsite = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedGig, setSelectedGig] = useState(null);
   const [currentView, setCurrentView] = useState("home");
@@ -98,8 +99,8 @@ const FreelancerWebsite = () => {
     try {
       const url =
         authMode === "signup"
-          ? "http://localhost:8000/api/users/register"
-          : "http://localhost:8000/api/users/login";
+          ? `${API_URL}/api/users/register`
+          : `${API_URL}/api/users/login`;
 
       const payload =
         authMode === "signup"
@@ -249,9 +250,7 @@ const FreelancerWebsite = () => {
   }, []);
 
   //here i have implemented the socket
-  const SOCKET_SERVER_URL = 'http://localhost:8000';
-
-  const socket = io(SOCKET_SERVER_URL, {
+  const socket = io(API_URL, {
     transports: ['websocket'],
   });
 
