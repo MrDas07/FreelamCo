@@ -47,6 +47,10 @@ io.on('connection', (socket) => {
   });
 });
 
+app.post('/test-post', (req, res) => {
+  console.log('Body received on /test-post:', req.body);
+  res.json({ message: 'POST /test-post successful', body: req.body });
+});
 
 
 app.use('/api/users', require('./routes/userRoutes'));
